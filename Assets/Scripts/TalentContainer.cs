@@ -22,16 +22,17 @@ namespace Talent_Tree
         {
             var notEnoughPoints = points < levelWeight;
             var levelTooHigh = currentTalentLevel >= maxTalentLevel;
-            
-            if (notEnoughPoints || levelTooHigh)
-            {
-                Debug.LogWarning(notEnoughPoints ? "Not enough points" : "Level is too high");
 
-                return false;
-            }
+            if (notEnoughPoints || levelTooHigh) return false;
 
             currentTalentLevel++;
             return true;
+        }
+
+        public string GetTalentContainerInfo()
+        {
+            return $"[\nName: {talent.Name}\nCurrent talent level: {currentTalentLevel}\n" +
+                   $"Max talent level: {maxTalentLevel}\nDescription: {talent.Description}\n]";
         }
     }
 }

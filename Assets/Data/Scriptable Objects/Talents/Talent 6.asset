@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff49bcec0335e244684e52002dc746cd, type: 3}
   m_Name: Talent 6
   m_EditorClassIdentifier: 
-  name: 
+  name: Talent 6
+  description: Description 6
+  icon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   placeholderToUnlock: {x: 0, y: 0, z: 0}
