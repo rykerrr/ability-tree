@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 715261125223800945}
   - component: {fileID: 3047604610581606506}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Button_SelectInOverview_TintImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

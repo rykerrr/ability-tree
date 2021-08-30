@@ -129,13 +129,14 @@ namespace Talent_Tree
             countText.text = $"{TalentContainer.CurrentTalentLevel}/{TalentContainer.MaxTalentLevel}";
 
             UpdateLinksUI();
-            
-            Debug.Log("updating ui teehee");
         }
 
         private void UpdateLinksUI()
         {
-            
+            foreach (var link in links)
+            {
+                link.UpdateFill(talentContainer.CurrentTalentLevel);
+            }
         }
     }
 }
