@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Talent_Tree
+namespace Talent_Tree.Dynamic_Talent_Tree
 {
     public class TalentOverviewUI : MonoBehaviour
     {
@@ -17,14 +17,14 @@ namespace Talent_Tree
         [SerializeField] private GameObject unlockTalentButton = default;
         [SerializeField] private GameObject talentIconParent = default;
         
-        private UnlockableTalentUI selectedTalentUi = default;
+        private DynamicTalentUI selectedTalentUi = default;
 
         private void Awake()
         {
             UpdateDisplay();
         }
 
-        public void SelectTalent(UnlockableTalentUI talentUi)
+        public void SelectTalent(DynamicTalentUI talentUi)
         {
             selectedTalentUi = talentUi;
             
@@ -45,7 +45,7 @@ namespace Talent_Tree
             if(!unlockTalentButton.activeSelf) unlockTalentButton.SetActive(true);
 
             var talContainer = selectedTalentUi.TalentContainer;
-            var tal = talContainer.Talent;
+            var tal = talContainer.DynamicTalent;
 
             talentName.text = tal.Name;
             talentDescription.text = tal.Description;

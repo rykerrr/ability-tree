@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Talent_Tree
+namespace Talent_Tree.Regular_Talent_Tree
 {
     [Serializable]
     public class TalentContainer

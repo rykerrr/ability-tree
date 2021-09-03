@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-namespace Talent_Tree
+namespace Talent_Tree.Dynamic_Talent_Tree
 {
-    public class TalentLinkPartUI : MonoBehaviour
+    public class DynamicTalentLinkPartUI : MonoBehaviour
     {
         [Header("Optional properties")]
-        [SerializeField] private float tweenDuration = 1f;
+        [SerializeField] private float tweenDur = 1f;
         
         [Header("Required properties and references")]
         [SerializeField] private Transform fillImage = default;
@@ -20,7 +20,13 @@ namespace Talent_Tree
         public Action onFillTweenEnd = delegate { };
         
         public Transform FillImage => fillImage;
-        public bool IsY => isY;
+
+        public bool IsY
+        {
+            get => isY;
+            set => isY = value;
+        }
+        
         public float Length => length;
 
         public bool IsFilled =>
@@ -39,8 +45,8 @@ namespace Talent_Tree
         {
             Tweener tweener = null;
 
-            if (isY) tweener = fillImage.transform.DOScaleY(fill, 1f).SetSpeedBased();
-            else tweener = fillImage.transform.DOScaleX(fill, 1f).SetSpeedBased();
+            if (isY) tweener = fillImage.transform.DOScaleY(fill, tweenDur).SetSpeedBased();
+            else tweener = fillImage.transform.DOScaleX(fill, tweenDur).SetSpeedBased();
 
             return tweener;
         }

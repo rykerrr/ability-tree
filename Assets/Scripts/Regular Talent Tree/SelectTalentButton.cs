@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Talent_Tree
+namespace Talent_Tree.Regular_Talent_Tree
 {
     public class SelectTalentButton : MonoBehaviour
     {

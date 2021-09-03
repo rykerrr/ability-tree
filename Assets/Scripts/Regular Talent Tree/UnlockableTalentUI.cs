@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Talent_Tree
+namespace Talent_Tree.Regular_Talent_Tree
 {
     public class UnlockableTalentUI : MonoBehaviour
     {

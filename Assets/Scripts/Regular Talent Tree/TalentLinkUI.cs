@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Talent_Tree
+namespace Talent_Tree.Regular_Talent_Tree
 {
     public class TalentLinkUI : MonoBehaviour
     {
         [SerializeField] private UnlockableTalentUI destination = default;
         [SerializeField] private int weightRequiredInBase = 1;
         [SerializeField] private List<TalentLinkPartUI> parts = default;
-
+        
         public UnlockableTalentUI Destination => destination;
         public bool CanTraverse(int points) => points >= weightRequiredInBase;
         

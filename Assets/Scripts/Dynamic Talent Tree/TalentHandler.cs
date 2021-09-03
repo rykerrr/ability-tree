@@ -2,7 +2,7 @@
 using System.Text;
 using UnityEngine;
 
-namespace Talent_Tree
+namespace Talent_Tree.Dynamic_Talent_Tree
 {
     public class TalentHandler : MonoBehaviour
     {
@@ -14,7 +14,7 @@ namespace Talent_Tree
 
         public int Points => points;
 
-        private readonly List<UnlockableTalentUI> talents = new List<UnlockableTalentUI>();
+        private readonly List<DynamicTalentUI> talents = new List<DynamicTalentUI>();
         private StringBuilder sb;
         
         private void Awake()
@@ -25,13 +25,13 @@ namespace Talent_Tree
             sb = new StringBuilder();
         }
 
-        private List<UnlockableTalentUI> GetTalentUIsFromTalentsContainer()
+        private List<DynamicTalentUI> GetTalentUIsFromTalentsContainer()
         {
-            var talentList = new List<UnlockableTalentUI>();
+            var talentList = new List<DynamicTalentUI>();
 
             foreach (Transform talTransf in talentContainer)
             {
-                var talUi = talTransf.GetComponent<UnlockableTalentUI>();
+                var talUi = talTransf.GetComponent<DynamicTalentUI>();
                 
                 talentList.Add(talUi);
             }
@@ -39,7 +39,7 @@ namespace Talent_Tree
             return talentList;
         }
 
-        public void TryLevelupTalent(UnlockableTalentUI talentUi)
+        public void TryLevelupTalent(DynamicTalentUI talentUi)
         {
             // TODO: Lower points by level up points (weight)
             var leveledUp = talentUi.TryLevelUp(points);
