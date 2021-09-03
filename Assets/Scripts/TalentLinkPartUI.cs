@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Talent_Tree
 {
@@ -23,35 +24,25 @@ namespace Talent_Tree
         public float Length => length;
 
         public bool IsFilled =>
-            isY ? fillImage.localScale.y + Mathf.Epsilon >= 1f : fillImage.localScale.x + Mathf.Epsilon >= 1f;
-        
-        private readonly Queue<Action> fillCoroutines = new Queue<Action>();
-        private WaitForEndOfFrame waitForEndOfFrame;
-        
+            isY ? fillImage.localScale.y + Mathf.Epsilon > 1f : fillImage.localScale.x + Mathf.Epsilon > 1f;
+
         private void Awake()
         {
+            DOTween.Init(false, false, LogBehaviour.Verbose);
+            DOTween.defaultAutoPlay = AutoPlay.None;
+            
             if (isY) length = ((RectTransform) fillImage).rect.height;
             else length = ((RectTransform) fillImage).rect.width;
-
-            waitForEndOfFrame = new WaitForEndOfFrame();
         }
 
-        public void SetFill(float fill)
+        public Tweener SetFill(float fill)
         {
-            // Debug.Log("Setting fill: " + fill);
-            
-            var scale = fillImage.localScale;
+            Tweener tweener = null;
 
-            if (isY) scale = new Vector3(scale.x, fill, scale.z);
-            else scale = new Vector3(fill, scale.y, scale.z);
+            if (isY) tweener = fillImage.transform.DOScaleY(fill, 1f).SetSpeedBased();
+            else tweener = fillImage.transform.DOScaleX(fill, 1f).SetSpeedBased();
 
-            if (fillCoroutines.Count == 0)
-            {
-                StartCoroutine(TweenToX(scale));
-            }
-            else fillCoroutines.Enqueue(() => StartCoroutine(TweenToX(scale)));
-
-            fillCoroutines.Enqueue(() => onFillTweenEnd?.Invoke());
+            return tweener;
         }
 
         public void SetFillInstant(float fill)
@@ -62,26 +53,6 @@ namespace Talent_Tree
             else scale = new Vector3(fill, scale.y, scale.z);
 
             fillImage.localScale = scale;
-        }
-        
-        private IEnumerator TweenToX(Vector3 end)
-        {
-            var t = 0.0f;
-            var start = fillImage.localScale;
-
-            while (t < tweenDuration)
-            {
-                t += Time.deltaTime;
-
-                fillImage.localScale = Vector3.Lerp(start, end, t / tweenDuration);
-
-                yield return waitForEndOfFrame;
-            }
-            
-            if (fillCoroutines.Count > 0)
-            {
-                fillCoroutines.Dequeue().Invoke();
-            }
         }
     }
 }

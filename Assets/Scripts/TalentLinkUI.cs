@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Talent_Tree
@@ -10,12 +11,21 @@ namespace Talent_Tree
         [SerializeField] private UnlockableTalentUI destination = default;
         [SerializeField] private int weightRequiredInBase = 1;
         [SerializeField] private List<TalentLinkPartUI> parts = default;
-        
+
         public UnlockableTalentUI Destination => destination;
         public bool CanTraverse(int points) => points >= weightRequiredInBase;
         
         private float fullLength = 0;
-        
+
+        private readonly Queue<Tweener> tweeners = new Queue<Tweener>();
+        private Tweener curTweener = default;
+
+        private void Awake()
+        {
+            DOTween.Init(false, false, LogBehaviour.Verbose);
+            DOTween.defaultAutoPlay = AutoPlay.None;
+        }
+
         private void Start()
         {
             foreach (var part in parts)
@@ -31,25 +41,54 @@ namespace Talent_Tree
             var fill = Mathf.Clamp01((float)baseLevel / weightRequiredInBase);
             var lenWithFill = fill * fullLength;
             
-            for (int i = 0; i < parts.Count; i++)
+            foreach (var part in parts)
             {
-                var part = parts[i];
+                if (part.IsFilled) continue;
                 
                 if (lenWithFill >= part.Length)
                 {
                     lenWithFill -= part.Length;
                     
-                    part.SetFillInstant(1);
+                    var tweener = part.SetFill(1);
+                    
+                    tweener.onComplete += () =>
+                    {
+                        if (tweeners.Count > 0)
+                        {
+                            curTweener = tweeners.Dequeue();
+                            curTweener.Play();
+                        }
+                        else curTweener = null;
+                    };
+                    
+                    tweeners.Enqueue(tweener);
                 }
                 else
                 {
-                    var partLen = lenWithFill / part.Length;
+                    var fillLength = lenWithFill / part.Length;
 
-                    // What if we're setting the fill of the 2nd part only instead?
-                    part.SetFillInstant(partLen);
+                    var tweener = part.SetFill(fillLength);
+                    
+                    tweener.onComplete += () =>
+                    {
+                        if (tweeners.Count > 0)
+                        {
+                            curTweener = tweeners.Dequeue();
+                            curTweener.Play();
+                        }
+                        else curTweener = null;
+                    };
+                    
+                    tweeners.Enqueue(tweener);
                     
                     break;
                 }
+            }
+            
+            if (tweeners.Count > 0 && curTweener == null)
+            {
+                curTweener = tweeners.Dequeue(); 
+                curTweener.Play();
             }
         }
     }
