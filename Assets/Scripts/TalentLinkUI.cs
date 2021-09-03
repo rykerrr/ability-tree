@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,13 +16,13 @@ namespace Talent_Tree
         
         private float fullLength = 0;
         
-        private void Awake()
+        private void Start()
         {
             foreach (var part in parts)
             {
                 fullLength += part.Length;
                 
-                part.SetFill(0);
+                part.SetFillInstant(0);
             }
         }
 
@@ -30,27 +31,23 @@ namespace Talent_Tree
             var fill = Mathf.Clamp01((float)baseLevel / weightRequiredInBase);
             var lenWithFill = fill * fullLength;
             
-            Debug.Log("a");
-            
-            foreach (var part in parts)
+            for (int i = 0; i < parts.Count; i++)
             {
+                var part = parts[i];
+                
                 if (lenWithFill >= part.Length)
                 {
-                    Debug.Log("b");
-                    
                     lenWithFill -= part.Length;
                     
-                    part.SetFill(1);
+                    part.SetFillInstant(1);
                 }
                 else
                 {
-                    Debug.Log("c");
-                    
                     var partLen = lenWithFill / part.Length;
-                    
-                    Debug.Log(partLen);
-                    part.SetFill(partLen);
 
+                    // What if we're setting the fill of the 2nd part only instead?
+                    part.SetFillInstant(partLen);
+                    
                     break;
                 }
             }

@@ -49,7 +49,7 @@ namespace Talent_Tree
                 points -= talentUi.LevelWeight;
             }
 
-            Debug.Log("Leveled up: " + leveledUp);
+            // Debug.Log("Leveled up: " + leveledUp);
         }
 
         [ContextMenu("Log all runtime-loaded talents")]

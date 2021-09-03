@@ -67,11 +67,12 @@ namespace Talent_Tree
             }
 
             UpdateTalentUI();
+            UpdateLinksUI();
 
             onTalentLeveledUp?.Invoke();
             
-            Debug.Log("Leveled up talent " + talentContainer.Talent.Name + " to level " +
-                      talentContainer.CurrentTalentLevel);
+            // Debug.Log("Leveled up talent " + talentContainer.Talent.Name + " to level " +
+            //          talentContainer.CurrentTalentLevel);
             
             return true;
         }
@@ -127,8 +128,6 @@ namespace Talent_Tree
             }
             
             countText.text = $"{TalentContainer.CurrentTalentLevel}/{TalentContainer.MaxTalentLevel}";
-
-            UpdateLinksUI();
         }
 
         private void UpdateLinksUI()
