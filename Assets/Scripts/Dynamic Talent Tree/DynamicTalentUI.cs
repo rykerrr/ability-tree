@@ -32,10 +32,12 @@ namespace Talent_Tree.Dynamic_Talent_Tree
             countText.gameObject.SetActive(false);
         }
 
-        public void Init(DynamicTalent talent, int maxTalentLevel, List<DynamicTalentLinkUI> talentLinks)
+        public void Init(DynamicTalent talent, int maxTalentLevel, List<DynamicTalentLinkUI> talentLinks
+            , UnlockState unlockStateOnDefault = UnlockState.NotUnlocked)
         {
             talentContainer = new TalentContainer(talent, maxTalentLevel, 1);
 
+            unlockState = unlockStateOnDefault;
             links = talentLinks;
             
             SetIconImageAsTalent();

@@ -4,7 +4,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
 {
     public class SelectTalentButton : MonoBehaviour
     {
-        [SerializeField] private TalentOverviewUI talentOverviewUI = default;
+        [SerializeField] private DynamicTalentOverviewUI dynamicTalentOverviewUI = default;
         [SerializeField] private DynamicTalentUI talentUi = default;
 
         private void Awake()
@@ -19,7 +19,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
 
         public void OnClick_TrySelectThisTalent()
         {
-            talentOverviewUI.SelectTalent(talentUi);
+            dynamicTalentOverviewUI.SelectTalent(talentUi);
         }
     }
 }

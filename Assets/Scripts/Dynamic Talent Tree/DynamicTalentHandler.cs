@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Talent_Tree.Dynamic_Talent_Tree
 {
-    public class TalentHandler : MonoBehaviour
+    public class DynamicTalentHandler : MonoBehaviour
     {
         [Header("References")] [SerializeField]
         private Transform talentContainer = default;
@@ -42,6 +42,9 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         public void TryLevelupTalent(DynamicTalentUI talentUi)
         {
             // TODO: Lower points by level up points (weight)
+            
+            Debug.Log($"Talent levelup called on {talentUi}");
+            
             var leveledUp = talentUi.TryLevelUp(points);
 
             if (leveledUp)
@@ -49,7 +52,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
                 points -= talentUi.LevelWeight;
             }
 
-            // Debug.Log("Leveled up: " + leveledUp);
+            Debug.Log($"Leveled up: {leveledUp} Level weight: {talentUi.LevelWeight} Points: {points}");
         }
 
         [ContextMenu("Log all runtime-loaded talents")]

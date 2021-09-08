@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace Talent_Tree.Dynamic_Talent_Tree
 {
-    public class TalentOverviewUI : MonoBehaviour
+    public class DynamicTalentOverviewUI : MonoBehaviour
     {
         [Header("References")] 
-        [SerializeField] private TalentHandler talentHandler = default;
+        [SerializeField] private DynamicTalentHandler dynamicTalentHandler = default;
         
         [Header("UI References")]
         [SerializeField] private Image talentIcon = default;
@@ -27,6 +27,8 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         public void SelectTalent(DynamicTalentUI talentUi)
         {
             selectedTalentUi = talentUi;
+            
+            Debug.Log($"Selected talent {selectedTalentUi}");
             
             selectedTalentUi.onTalentLeveledUp += UpdateDisplay;
 
@@ -81,7 +83,9 @@ namespace Talent_Tree.Dynamic_Talent_Tree
 
         public void OnClick_TryUnlockTalent()
         {
-            talentHandler.TryLevelupTalent(selectedTalentUi);
+            Debug.Log($"Attempting to level up talent: {selectedTalentUi}");
+            
+            dynamicTalentHandler.TryLevelupTalent(selectedTalentUi);
         }
     }
 }
