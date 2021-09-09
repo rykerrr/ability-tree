@@ -121,37 +121,6 @@ namespace Talent_Tree.Dynamic_Talent_Tree
                 ((RectTransform) node.transform).SetAnchorsAndPivot(value, value, value);
             }
         }
-        
-        private void ResizeContentBasedOnLimits()
-        {
-            var rightLim = contentCorners[0].position.x;
-            var topLim = contentCorners[1].position.y;
-            var leftLim = contentCorners[2].position.x;
-            var botLim = contentCorners[3].position.y;
-
-            var width = Math.Abs(rightLim - leftLim);
-            var height = Math.Abs(topLim - botLim);
-
-            contentToResize.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width + bonusWidth);
-            contentToResize.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + bonusHeight);
-            
-            contentToResize.ForceUpdateRectTransforms();
-
-            var leftOverWidth = Math.Abs(contentToResize.rect.width / 2f - leftLim);
-            var leftOverHeight = Math.Abs(contentToResize.rect.height / 2f - botLim);
-
-            if (leftOverWidth > 10f)
-            {
-                contentToResize.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width + bonusWidth
-                + leftOverWidth);
-            }
-
-            if (leftOverHeight > 10f)
-            {
-                contentToResize.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height + bonusHeight
-                + leftOverHeight);
-            }
-        }
 
         private void InitContentCorners()
         {
