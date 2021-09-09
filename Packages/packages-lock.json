@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "com.nika.contentresizer": {
-      "version": "file:F:/Unity/Packages/ResizeContentToFitElements",
+      "version": "https://github.com/rykerrr/com-nika-contentresizer.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "9a060aab855a8487d4a38daecf27d18c377f1090"
     },
     "com.nika.tools": {
       "version": "file:F:/Unity/Packages/Tools",

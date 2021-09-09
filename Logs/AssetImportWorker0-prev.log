@@ -1,0 +1,244 @@
+Using pre-set license
+Built from '2020.3/release' branch; Version is '2020.3.7f1 (dd97f2c94397) revision 14522354'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 8.1  (6.3.0) 64bit' Language: 'en' Physical Memory: 16337 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+F:\Unity\Versions\2020.3.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+F:/Unity/Projects/Ability Tree
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+54303
+Successfully changed project path to: F:/Unity/Projects/Ability Tree
+F:/Unity/Projects/Ability Tree
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 54.34 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.7f1 (dd97f2c94397)
+[Subsystems] Discovering subsystems at path F:/Unity/Versions/2020.3.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path F:/Unity/Projects/Ability Tree/Assets
+GfxDevice: creating device client; threaded=0
+d3d11: QueryInterface(IDXGIFactory5) failed (80004002).
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 760 (ID=0x1187)
+    Vendor:   
+    VRAM:     1947 MB
+    Driver:   26.21.14.4575
+Initialize mono
+Mono path[0] = 'F:/Unity/Versions/2020.3.7f1/Editor/Data/Managed'
+Mono path[1] = 'F:/Unity/Versions/2020.3.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'F:/Unity/Versions/2020.3.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56748
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: F:/Unity/Versions/2020.3.7f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: F:/Unity/Versions/2020.3.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: F:/Unity/Versions/2020.3.7f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.002943 seconds.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 52.18 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  4.619 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.002012 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 57.91 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.243 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1856 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 88.1 MB.
+System memory in use after: 88.1 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2308.
+Total: 2.315560 ms (FindLiveObjects: 0.204139 ms CreateObjectMapping: 0.087205 ms MarkObjects: 1.934037 ms  DeleteObjects: 0.088526 ms)
+
+========================================================================
+Received Import Request.
+  path: Packages/com.nika.contentresizer/Runtime
+  artifactKey: Guid(33369da4590d1cd46a857d1795b3bc36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime using Guid(33369da4590d1cd46a857d1795b3bc36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0ad30e0e7a8aad5f6bc6e4f6616eeac') in 0.007648 seconds
+  Import took 0.011631 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001364 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef
+  artifactKey: Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef using Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e25f17845b0e5a59ffff309b62771f8f') in 0.026452 seconds
+  Import took 0.029768 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 29.025408 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef
+  artifactKey: Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef using Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be100c26d1e88bb8879bcf86f268ba50') in 0.004820 seconds
+  Import took 0.008716 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.229331 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef
+  artifactKey: Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef using Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ec438be1038e6b4d28755dacdcb0e0c') in 0.003566 seconds
+  Import took 0.007563 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.429203 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef
+  artifactKey: Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef using Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1aac5bac1f2082f469ea95663cb31717') in 0.004487 seconds
+  Import took 0.008903 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002271 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.45 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.128 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.46 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1833 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.3 MB.
+System memory in use after: 86.4 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2311.
+Total: 2.208865 ms (FindLiveObjects: 0.210415 ms CreateObjectMapping: 0.080929 ms MarkObjects: 1.890435 ms  DeleteObjects: 0.025765 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 1285.913169 seconds.
+  path: Packages/com.nika.contentresizer/package.json
+  artifactKey: Guid(f31e10711cf62c14b925aa10ba17a565) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/package.json using Guid(f31e10711cf62c14b925aa10ba17a565) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56c98905e2eafe6aef0a0ea382ba7a69') in 0.022861 seconds
+  Import took 0.027266 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 102.772096 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/ResizeContentToFitElements.cs
+  artifactKey: Guid(0d4e8713181e5d5489abb2e583944987) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/ResizeContentToFitElements.cs using Guid(0d4e8713181e5d5489abb2e583944987) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a3d584aaf4d19d564ed4528b0905f2c') in 0.009281 seconds
+  Import took 0.013396 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.024097 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef
+  artifactKey: Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/NikA.ContentResizer.asmdef using Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c49970e1ed78d2deacbc24502e56617') in 0.004298 seconds
+  Import took 0.008394 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002167 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.45 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.156 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.52 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1833 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.3 MB.
+System memory in use after: 86.4 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2314.
+Total: 2.472463 ms (FindLiveObjects: 0.223298 ms CreateObjectMapping: 0.118586 ms MarkObjects: 2.110429 ms  DeleteObjects: 0.018828 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.492779 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/com.NikA.ContentResizer.asmdef
+  artifactKey: Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/com.NikA.ContentResizer.asmdef using Guid(1fba558ff4ba45d42af5ad6e15079b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8a2bcb1e92526336ca3f5ec4aa1bbdc') in 0.012425 seconds
+  Import took 0.017110 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002056 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.170 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.61 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1833 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.3 MB.
+System memory in use after: 86.4 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2317.
+Total: 2.519699 ms (FindLiveObjects: 0.243117 ms CreateObjectMapping: 0.085223 ms MarkObjects: 2.168896 ms  DeleteObjects: 0.020480 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 434.030683 seconds.
+  path: Packages/com.nika.contentresizer/Runtime/ResizeContentToFitElements.cs
+  artifactKey: Guid(0d4e8713181e5d5489abb2e583944987) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.nika.contentresizer/Runtime/ResizeContentToFitElements.cs using Guid(0d4e8713181e5d5489abb2e583944987) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62071007ef93b4c2fec953f2cf7c19fd') in 0.013444 seconds
+  Import took 0.018398 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001886 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.57 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.218 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.48 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1833 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.3 MB.
+System memory in use after: 86.4 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2320.
+Total: 2.340664 ms (FindLiveObjects: 0.223959 ms CreateObjectMapping: 0.080929 ms MarkObjects: 2.014636 ms  DeleteObjects: 0.019159 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
