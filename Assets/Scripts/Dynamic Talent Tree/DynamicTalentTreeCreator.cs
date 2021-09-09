@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using ContentResizer;
 
 namespace Talent_Tree.Dynamic_Talent_Tree
 {
@@ -14,9 +14,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         [SerializeField] private DynamicTalentOverviewUI dynamicTalentOverviewUI = default;
 
         [Header("Content resize")]
-        [SerializeField] private RectTransform contentToResize = default;
-        [SerializeField] private float bonusWidth = 40f;
-        [SerializeField] private float bonusHeight = 40f;
+        [SerializeField] private ResizeContentToFitElements resizeContent = default;
         
         [Header("Prefabs")] 
         [SerializeField] private DynamicTalentUI dynamicTalentUIPrefab = default;
@@ -35,12 +33,9 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         [SerializeField] private float partWidth = 15f;
 
         [SerializeField] private List<DynamicTalentUI> createdTalentUIs = new List<DynamicTalentUI>();
-        
-        
-        [Tooltip("0 - max X, 1 - max Y, 2 - min X, 3 - min Y / (0 - right, 1 - top, 2 - left, 3 - bottom)")]
-        [SerializeField] private RectTransform[] contentCorners = new RectTransform[4];
 
         private readonly List<DynamicTalentLinkUI> createdLinkUIs = new List<DynamicTalentLinkUI>();
+        
         private Vector3 treeRootPosition = default;
 
         private void Awake()
@@ -50,92 +45,11 @@ namespace Talent_Tree.Dynamic_Talent_Tree
             treeRootPosition = treeRootPositionTransform.position;
             
             CreateTreeFromRoot();
-
-            var treeNodeHeight = GetTreeHeight(root);
-
-            contentToResize.position = new Vector3(contentToResize.position.x, treeRootPosition.y 
-                                                                               - yDistanceFromNode * treeNodeHeight / 2);
             
-            InitContentCorners();
-            ResizeStretchedContent();
-        }
-
-        // This method is required to resize the stretched content based on the position of the corner nodes,
-        // so that they're all encompassed in the scroll view's content
-        // 0 - right, 1 - top, 2 - left, 3 - bottom
-        private void ResizeStretchedContent()
-        {
-            #region adjusting_top
-            Vector2 value = new Vector2(0.5f, 1f);
-            contentCorners[1].SetAnchorsAndPivot(value, value, value);
-            var posToAdd = contentCorners[1].anchoredPosition.y;
-            
-            SetAnchorAndPivotOfTalentElements(new Vector2(0.5f, 0f));
-            contentToResize.offsetMax = 
-                new Vector2(contentToResize.offsetMax.x, contentToResize.offsetMax.y + posToAdd);
-            #endregion
-            
-            #region adjusting_bot
-            value = new Vector2(0.5f, 0f);
-            contentCorners[3].SetAnchorsAndPivot(value, value, value);
-            posToAdd = contentCorners[3].anchoredPosition.y;
-            
-            SetAnchorAndPivotOfTalentElements(new Vector2(0.5f, 1f));
-            contentToResize.offsetMin = 
-                new Vector2(contentToResize.offsetMin.x, contentToResize.offsetMin.y + posToAdd); 
-            #endregion
-            
-            #region adjusting_left
-            value = new Vector2(0f, 0.5f);
-            contentCorners[2].SetAnchorsAndPivot(value, value, value);
-            posToAdd = contentCorners[2].anchoredPosition.x;
-            
-            SetAnchorAndPivotOfTalentElements(new Vector2(1f, 0.5f));
-            contentToResize.offsetMin =
-                new Vector2(contentToResize.offsetMin.x + posToAdd, contentToResize.offsetMin.y);
-            #endregion
-            
-            #region adjusting_right
-            value = new Vector2(1f, 0.5f);
-            contentCorners[0].SetAnchorsAndPivot(value, value, value);
-            posToAdd = contentCorners[0].anchoredPosition.x;
-            
-            SetAnchorAndPivotOfTalentElements(new Vector2(0f, 0.5f));
-            contentToResize.offsetMax
-                = new Vector2(contentToResize.offsetMax.x + posToAdd, contentToResize.offsetMax.y);
-            #endregion
-            
-            SetAnchorAndPivotOfTalentElements(new Vector2(0.5f, 0.5f));
-        }
-
-        private void SetAnchorAndPivotOfTalentElements(Vector2 value)
-        {
-            foreach (var link in createdLinkUIs)
-            {
-                ((RectTransform) link.transform).SetAnchorsAndPivot(value, value, value);
-
-            }
-
-            foreach (var node in createdTalentUIs)
-            {
-                ((RectTransform) node.transform).SetAnchorsAndPivot(value, value, value);
-            }
-        }
-
-        private void InitContentCorners()
-        {
-            // max x
-            contentCorners[0] = (RectTransform) createdTalentUIs
-                .OrderByDescending(x => ((RectTransform) x.transform).position.x).First().transform;
-            // max y
-            contentCorners[1] = (RectTransform) createdTalentUIs
-                .OrderByDescending(x => ((RectTransform) x.transform).position.y).First().transform;
-            // min x
-            contentCorners[2] =
-                (RectTransform) createdTalentUIs.OrderBy(x => ((RectTransform) x.transform).position.x).First().transform;
-            // min y
-            contentCorners[3] =
-                (RectTransform) createdTalentUIs.OrderBy(x => ((RectTransform) x.transform).position.y).First().transform;
+            resizeContent.InitElements(
+                createdTalentUIs.Select(x => (RectTransform)x.transform)
+                .Concat(createdLinkUIs.Select(x => (RectTransform) x.transform)));
+            Debug.Log(resizeContent.TryResizeStretchedContent());
         }
 
         private void CreateTreeFromRoot()
@@ -173,6 +87,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
             var parentPos = parent.transform.position;
             
             var signedInd = parentTalent.Links.Count / 2 - index;
+            
             var thisNodeUi = CreateNodeUI(nodeToCreate, new Vector3(
                 parentPos.x + signedInd * xDistanceFromNode
                 , treeRootPosition.y - yDistanceFromNode * depth, 0f));
@@ -202,10 +117,6 @@ namespace Talent_Tree.Dynamic_Talent_Tree
 
             talentUiRectTransf.SetParent(talentsContainer);
             talentUiClone.name = nodeBase.Name;
-
-            // talentUiRectTransf.anchorMin = new Vector3(0.5f, 0f);
-            // talentUiRectTransf.anchorMax = new Vector3(0.5f, 0f);
-            // talentUiRectTransf.pivot = new Vector3(0.5f, 0f);
 
             talentUiClone.GetComponent<SelectDynamicTalentButton>().DynamicTalentOverviewUI = dynamicTalentOverviewUI;
             
@@ -334,22 +245,6 @@ namespace Talent_Tree.Dynamic_Talent_Tree
             }
 
             return parts;
-        }
-
-        private int GetTreeHeight(DynamicTalent root)
-        {
-            if (root == null) return -1;
-
-            int[] heights = new int[root.Links.Count];
-
-            for (int i = 0; i < root.Links.Count; i++)
-            {
-                var link = root.Links[i];
-
-                heights[i] = GetTreeHeight(link.Destination) + 1;
-            }
-
-            return heights.Length > 0 ? heights.Max() : 0;
         }
     }
 }

@@ -705,7 +705,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1531,6 +1531,7 @@ GameObject:
   - component: {fileID: 1560872141}
   - component: {fileID: 1560872144}
   - component: {fileID: 1560872142}
+  - component: {fileID: 1560872145}
   m_Layer: 0
   m_Name: GameObject_TalentTree_UI
   m_TagString: Untagged
@@ -1600,9 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 1
   dynamicTalentOverviewUI: {fileID: 1560872144}
-  contentToResize: {fileID: 1542956953}
-  bonusWidth: 40
-  bonusHeight: 40
+  resizeContent: {fileID: 1560872145}
   dynamicTalentUIPrefab: {fileID: -5285984259558408008, guid: d5edc22f6ae761d4b81b884bbae0f81c, type: 3}
   dynamicLinkUIPrefab: {fileID: 5359461481623457879, guid: 1c8685eb0e9755b408e9184861fedc51, type: 3}
   dynamicLinkPartUIPrefab: {fileID: 2946128284783669964, guid: ec5bd3d5b5c4a1a47a6b589d173692f5, type: 3}
@@ -1614,11 +1613,6 @@ MonoBehaviour:
   yDistanceFromNode: 300
   partWidth: 15
   createdTalentUIs: []
-  contentCorners:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1560872143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,6 +1646,19 @@ MonoBehaviour:
   talentLevelDisplay: {fileID: 1937779743}
   unlockTalentButton: {fileID: 735047928}
   talentIconParent: {fileID: 1997368603}
+--- !u!114 &1560872145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560872138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4e8713181e5d5489abb2e583944987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contentToResize: {fileID: 1542956953}
 --- !u!1 &1937779741
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.nika.contentresizer": "file:F:/Unity/Packages/ResizeContentToFitElements",
     "com.nika.tools": "file:F:/Unity/Packages/Tools",
     "com.unity.2d.animation": "5.0.4",
     "com.unity.2d.pixel-perfect": "4.0.1",
