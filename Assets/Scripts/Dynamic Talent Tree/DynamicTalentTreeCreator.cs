@@ -60,41 +60,68 @@ namespace Talent_Tree.Dynamic_Talent_Tree
             ResizeStretchedContent();
         }
 
+        // This method is required to resize the stretched content based on the position of the corner nodes,
+        // so that they're all encompassed in the scroll view's content
+        // 0 - right, 1 - top, 2 - left, 3 - bottom
         private void ResizeStretchedContent()
         {
-            contentToResize.offsetMax = new Vector3(contentToResize.offsetMax.x, 
-                contentToResize.offsetMax.y + 120f);
+            #region adjusting_top
+            Vector2 value = new Vector2(0.5f, 1f);
+            contentCorners[1].SetAnchorsAndPivot(value, value, value);
+            var posToAdd = contentCorners[1].anchoredPosition.y;
             
-            var offsetBot = contentCorners[3].position.y;
-            var topAnchor = new Vector2(0.5f, 1f);
+            SetAnchorAndPivotOfTalentElements(new Vector2(0.5f, 0f));
+            contentToResize.offsetMax = 
+                new Vector2(contentToResize.offsetMax.x, contentToResize.offsetMax.y + posToAdd);
+            #endregion
             
-            SetAnchorAndPivotOfTalentElements(topAnchor);
+            #region adjusting_bot
+            value = new Vector2(0.5f, 0f);
+            contentCorners[3].SetAnchorsAndPivot(value, value, value);
+            posToAdd = contentCorners[3].anchoredPosition.y;
             
-            contentToResize.offsetMin = new Vector2(contentToResize.offsetMin.x, 
-                contentToResize.offsetMin.y + offsetBot);
+            SetAnchorAndPivotOfTalentElements(new Vector2(0.5f, 1f));
+            contentToResize.offsetMin = 
+                new Vector2(contentToResize.offsetMin.x, contentToResize.offsetMin.y + posToAdd); 
+            #endregion
             
-            SetAnchorAndPivotOfTalentElements(Vector2.one / 2f);
+            #region adjusting_left
+            value = new Vector2(0f, 0.5f);
+            contentCorners[2].SetAnchorsAndPivot(value, value, value);
+            posToAdd = contentCorners[2].anchoredPosition.x;
+            
+            SetAnchorAndPivotOfTalentElements(new Vector2(1f, 0.5f));
+            contentToResize.offsetMin =
+                new Vector2(contentToResize.offsetMin.x + posToAdd, contentToResize.offsetMin.y);
+            #endregion
+            
+            #region adjusting_right
+            value = new Vector2(1f, 0.5f);
+            contentCorners[0].SetAnchorsAndPivot(value, value, value);
+            posToAdd = contentCorners[0].anchoredPosition.x;
+            
+            SetAnchorAndPivotOfTalentElements(new Vector2(0f, 0.5f));
+            contentToResize.offsetMax
+                = new Vector2(contentToResize.offsetMax.x + posToAdd, contentToResize.offsetMax.y);
+            #endregion
+            
+            SetAnchorAndPivotOfTalentElements(new Vector2(0.5f, 0.5f));
         }
 
         private void SetAnchorAndPivotOfTalentElements(Vector2 value)
         {
             foreach (var link in createdLinkUIs)
             {
-                var transf = (RectTransform) link.transform;
+                ((RectTransform) link.transform).SetAnchorsAndPivot(value, value, value);
 
-                transf.SetAnchors(value, value);
-                transf.SetPivot(value);
             }
 
             foreach (var node in createdTalentUIs)
             {
-                var transf = (RectTransform) node.transform;
-
-                transf.SetAnchors(value, value);
-                transf.SetPivot(value);
+                ((RectTransform) node.transform).SetAnchorsAndPivot(value, value, value);
             }
         }
-
+        
         private void ResizeContentBasedOnLimits()
         {
             var rightLim = contentCorners[0].position.x;

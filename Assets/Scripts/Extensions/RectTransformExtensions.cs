@@ -17,13 +17,20 @@ namespace Talent_Tree
 			rectTransform.localPosition -= deltaPosition;           // reverse the position change
 		}
 		
-		public static void SetAnchors(this RectTransform rectTransform, Vector2 AnchorMin, Vector2 AnchorMax)
+		public static void SetAnchors(this RectTransform rectTransform, Vector2 anchorMin, Vector2 anchorMax)
 		{
-			var Parent = rectTransform.parent;
-			if (Parent) rectTransform.SetParent(null);
-			rectTransform.anchorMin = AnchorMin;
-			rectTransform.anchorMax = AnchorMax;
-			if (Parent) rectTransform.SetParent(Parent);
+			var parent = rectTransform.parent;
+			if (parent) rectTransform.SetParent(null);
+			rectTransform.anchorMin = anchorMin;
+			rectTransform.anchorMax = anchorMax;
+			if (parent) rectTransform.SetParent(parent);
+		}
+
+		public static void SetAnchorsAndPivot(this RectTransform rectTransform, Vector2 anchorMin, Vector2 anchorMax
+			, Vector2 pivot)
+		{
+			rectTransform.SetAnchors(anchorMin, anchorMax);
+			rectTransform.SetPivot(pivot);
 		}
 	}
 }
