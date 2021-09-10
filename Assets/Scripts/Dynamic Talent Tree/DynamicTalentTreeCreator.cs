@@ -15,6 +15,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
 
         [Header("Content resize")]
         [SerializeField] private ResizeContentToFitElements resizeContent = default;
+        [SerializeField] private ResizeContentBackgroundByContent resizeContentBackground = default;
         
         [Header("Prefabs")] 
         [SerializeField] private DynamicTalentUI dynamicTalentUIPrefab = default;
@@ -49,7 +50,9 @@ namespace Talent_Tree.Dynamic_Talent_Tree
             resizeContent.InitElements(
                 createdTalentUIs.Select(x => (RectTransform)x.transform)
                 .Concat(createdLinkUIs.Select(x => (RectTransform) x.transform)));
-            Debug.Log(resizeContent.TryResizeStretchedContent());
+                
+            resizeContent.TryResizeStretchedContent();
+            resizeContentBackground.Resize();
         }
 
         private void CreateTreeFromRoot()
@@ -128,11 +131,8 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         {
             var parentPos = parent.transform.position;
             var destinationPos = destination.transform.position;
-
-            var midPoint = new Vector3(parentPos.x - destinationPos.x,
-                Math.Max(parentPos.y, destinationPos.y), 0f);
-
-            var linkClone = Instantiate(dynamicLinkUIPrefab, midPoint, Quaternion.identity);
+            
+            var linkClone = Instantiate(dynamicLinkUIPrefab, Vector3.zero, Quaternion.identity);
 
             var linkTransf = (RectTransform) linkClone.transform;
             
