@@ -15,7 +15,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         
         [Header("Talent properties")]
         [SerializeField] private TalentContainer talentContainer = default;
-        [SerializeField] private UnlockState unlockState = UnlockState.NotUnlocked;
+        [SerializeField] private UnlockState unlockState = UnlockState.NotUnlockable;
         [SerializeField] private Color unlockedTintColor = Color.white;
         
         [SerializeField] private List<DynamicTalentLinkUI> links = new List<DynamicTalentLinkUI>();
@@ -24,17 +24,14 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         public event Action onTalentLeveledUp = delegate { };
         
         public TalentContainer TalentContainer => talentContainer;
-        public int LevelWeight => talentContainer.LevelWeight;
+        public int LevelWeight => talentContainer.SingleLevelWeight;
         public List<DynamicTalentLinkUI> Links => links;
-        
-        private void Awake()
-        {
-            countText.gameObject.SetActive(false);
-        }
 
         public void Init(DynamicTalent talent, int maxTalentLevel, List<DynamicTalentLinkUI> talentLinks
-            , UnlockState unlockStateOnDefault = UnlockState.NotUnlocked)
+            , UnlockState unlockStateOnDefault = UnlockState.NotUnlockable)
         {
+            countText.gameObject.SetActive(false);
+
             talentContainer = new TalentContainer(talent, maxTalentLevel, 1);
 
             unlockState = unlockStateOnDefault;
@@ -66,17 +63,21 @@ namespace Talent_Tree.Dynamic_Talent_Tree
                     unlockState = UnlockState.Unlocked;
                 }
 
-                foreach (var link in links)
+                if(links != null && links.Count > 0)
                 {
-                    if (link.CanTraverse(talentContainer.CurrentTalentLevel))
+                    foreach (var link in links)
                     {
-                        link.Destination.TrySetUnlockState(UnlockState.Unlockable);
+                        if (link.CanTraverse(talentContainer.CurrentTalentLevel))
+                        {
+                            link.Destination.TrySetUnlockState(UnlockState.Unlockable);
+                        }
                     }
+                    
+                    UpdateLinksUI();
                 }
             }
 
             UpdateTalentUI();
-            UpdateLinksUI();
 
             onTalentLeveledUp?.Invoke();
             
@@ -95,7 +96,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         {
             switch (newState)
             {
-                case UnlockState.NotUnlocked:
+                case UnlockState.NotUnlockable:
                 {
                     unlockState = newState;
                     
@@ -111,7 +112,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
                 }
                 case UnlockState.Unlocked:
                 {
-                    if (unlockState == UnlockState.NotUnlocked) return;
+                    if (unlockState == UnlockState.NotUnlockable) return;
 
                     unlockState = newState;
                     
@@ -131,7 +132,10 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         {
             if (unlockState == UnlockState.Unlockable || unlockState == UnlockState.Unlocked)
             {
-                if(!countText.gameObject.activeSelf) countText.gameObject.SetActive(true);
+                if (!countText.gameObject.activeSelf)
+                {
+                    countText.gameObject.SetActive(true);
+                }
                 
                 tintImage.color = unlockedTintColor;
             }

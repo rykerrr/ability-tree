@@ -2,7 +2,7 @@
 {
     public enum UnlockState
     {
-        NotUnlocked,
+        NotUnlockable,
         Unlockable,
         Unlocked
     }

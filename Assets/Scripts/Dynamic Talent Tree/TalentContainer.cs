@@ -9,25 +9,25 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         [SerializeField] private DynamicTalent dynamicTalent = default;
         
         [SerializeField] private int maxTalentLevel = 5;
-        [SerializeField] private int levelWeight = 1;
+        [SerializeField] private int singleLevelWeight = 1;
 
         private int currentTalentLevel;
 
         public DynamicTalent DynamicTalent => dynamicTalent;
         public int MaxTalentLevel => maxTalentLevel;
-        public int LevelWeight => levelWeight;
+        public int SingleLevelWeight => singleLevelWeight;
         public int CurrentTalentLevel => currentTalentLevel;
 
-        public TalentContainer(DynamicTalent dynamicTalent, int maxTalentLevel, int levelWeight)
+        public TalentContainer(DynamicTalent dynamicTalent, int maxTalentLevel, int singleLevelWeight)
         {
             this.dynamicTalent = dynamicTalent;
             this.maxTalentLevel = maxTalentLevel;
-            this.levelWeight = levelWeight;
+            this.singleLevelWeight = singleLevelWeight;
         }
         
         public bool TryLevelupTalent(int points)
         {
-            var notEnoughPoints = points < levelWeight;
+            var notEnoughPoints = points < singleLevelWeight;
             var levelTooHigh = currentTalentLevel >= maxTalentLevel;
 
             if (notEnoughPoints || levelTooHigh) return false;

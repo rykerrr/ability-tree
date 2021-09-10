@@ -23,14 +23,29 @@ namespace Talent_Tree.Dynamic_Talent_Tree
         
         public Vector3 PlaceholderToUnlock => placeholderToUnlock;
         public List<TalentLink> Links => links;
-        
+
+        private void SetNameAsAssetFileName()
+        {
+            var assetPath = AssetDatabase.GetAssetPath(GetInstanceID());
+                
+            name = Path.GetFileNameWithoutExtension(assetPath);
+        }
+
         // load filename into name
         // + in OnValidate
         protected virtual void OnValidate()
         {
-            var assetPath = AssetDatabase.GetAssetPath(this.GetInstanceID());
-                
-            name = Path.GetFileNameWithoutExtension(assetPath);
+            SetNameAsAssetFileName();
+        }
+        
+        private void OnEnable()
+        {
+            EditorApplication.projectChanged += SetNameAsAssetFileName;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.projectChanged -= SetNameAsAssetFileName;
         }
     }
 }

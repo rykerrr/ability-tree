@@ -52,7 +52,7 @@ namespace Talent_Tree.Dynamic_Talent_Tree
             talentName.text = tal.Name;
             talentDescription.text = tal.Description;
             talentLevelDisplay.text = $"Current Level/Max Level: {talContainer.CurrentTalentLevel}/{talContainer.MaxTalentLevel}\n"
-                + $"Points required for level up: {talContainer.LevelWeight}";
+                + $"Points required for level up: {talContainer.SingleLevelWeight}";
             
             if(!talentIconParent.activeSelf) talentIconParent.SetActive(true);
             talentIcon.sprite = tal.Icon;
